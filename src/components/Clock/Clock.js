@@ -16,10 +16,7 @@ class Clock extends Component {
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
   componentWillUnmount() {
     clearInterval(this.timerID);
@@ -27,7 +24,25 @@ class Clock extends Component {
 
   tick() {
     const { seconds, minutes, hours } = this.state;
-    if (seconds === 59) {
+    if (hours < 9 && minutes < 9 && seconds < 9) {
+      this.setState({
+        hours: '0' + new Date().getHours(),
+        minutes: '0' + new Date().getMinutes(),
+        seconds: '0' + new Date().getSeconds()
+      });
+    } else if (minutes < 9 && seconds < 9) {
+      this.setState({
+        hours: new Date().getHours(),
+        minutes: '0' + new Date().getMinutes(),
+        seconds: '0' + new Date().getSeconds()
+      });
+    } else if (seconds === 59 && minutes < 9) {
+      this.setState({
+        hours: new Date().getHours(),
+        minutes: '0' + new Date().getMinutes(),
+        seconds: '0' + new Date().getSeconds()
+      });
+    } else if (seconds === 59) {
       this.setState({
         hours: new Date().getHours(),
         minutes: new Date().getMinutes(),
@@ -39,13 +54,13 @@ class Clock extends Component {
         minutes: new Date().getMinutes(),
         seconds: '0' + new Date().getSeconds()
       });
-    } else if (minutes === 59) {
+    } else if (minutes === 0) {
       this.setState({
         hours: new Date().getHours(),
         minutes: '0' + new Date().getMinutes(),
         seconds: new Date().getSeconds()
       });
-    } else if (minutes <= 9) {
+    } else if (minutes < 9) {
       this.setState({
         hours: new Date().getHours(),
         minutes: '0' + new Date().getMinutes(),
