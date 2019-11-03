@@ -5,8 +5,3 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(to right, skyblue -50%, purple 150%);
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
