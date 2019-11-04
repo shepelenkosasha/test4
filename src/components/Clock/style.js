@@ -24,6 +24,7 @@ const ClockValue = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 `;
 
 const Descr = styled.span`
